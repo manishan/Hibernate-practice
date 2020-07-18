@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.tutorial.jdbc.Certificate" table="CERTIFICATE">
+		<meta attribute="class-description">
+			this class contain certificates for employee
+		</meta>
+		<id name="id" type="int" column="id">
+			<generator class="native"/>
+		</id>
+		<property name="name" type="string" column="certificate_name"/>
+	</class>
+	
+	<class name="com.tutorial.jdbc.Employee" table="EMPLOYEE">
+		<meta attribute="class-description">
+			this class contain employee information
+		</meta>
+		<id name="id" type="int" column="id">
+			<generator class="native"/>
+		</id>
+		<set name ="certificates" cascade="all">
+			<key column="employee_id"/>
+			<one-to-many class="com.tutorial.jdbc.Certificate"/>
+		</set>
+		<property name="firstName" type="string" column="FIRST_NAME"/>
+		<property name="lastName" type="string" column="LAST_NAME"/>
+		<property name="salary" type="int" column="SALARY"/>
+	</class>
+	
+	
+</hibernate-mapping>
+
